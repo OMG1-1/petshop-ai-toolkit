@@ -1,4 +1,4 @@
-/* 宠物店AI营销工具箱 - 样式文件 */
+/* 宠物店AI营销工具箱 - 简约可爱风格 */
 * {
     margin: 0;
     padding: 0;
@@ -6,11 +6,10 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e9f7ff 100%);
     color: #333;
     line-height: 1.6;
-    min-height: -webkit-fill-available;
     min-height: 100vh;
 }
 
@@ -24,21 +23,32 @@ body {
     text-align: center;
     margin-bottom: 40px;
     padding: 30px;
-    background: linear-gradient(135deg, #6ecbf5 0%, #0596e4 100%);
+    background: linear-gradient(135deg, #ff9ecb 0%, #ffb9d6 100%);
     color: white;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 25px rgba(255, 155, 203, 0.2);
 }
 
 .header h1 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     font-weight: 700;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .subtitle {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     opacity: 0.9;
+    margin-bottom: 10px;
+}
+
+.header-icons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 10px;
+    font-size: 1.5rem;
+    color: white;
 }
 
 .main {
@@ -48,20 +58,29 @@ body {
 }
 
 .tool-card {
-    background: white;
-    border-radius: 15px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+    border-radius: 20px;
     padding: 25px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(255, 155, 203, 0.1);
     margin-bottom: 20px;
+    border: 1px solid #f5f7fa;
+    transition: all 0.3s ease;
+}
+
+.tool-card:hover {
+    box-shadow: 0 15px 40px rgba(255, 155, 203, 0.2);
+    transform: translateY(-3px);
 }
 
 .tool-header {
     margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #ffb9d6;
 }
 
 .tool-header h2 {
-    font-size: 1.8rem;
-    color: #333;
+    font-size: 2rem;
+    color: #ff6eb4;
     margin-bottom: 10px;
 }
 
@@ -99,17 +118,20 @@ body {
 
 .input-group input,
 .input-group select {
-    padding: 12px;
+    padding: 15px;
     border: 2px solid #e0e0e0;
-    border-radius: 8px;
+    border-radius: 12px;
     font-size: 1rem;
-    transition: border-color 0.3s;
+    transition: all 0.3s ease;
+    background: #ffffff;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 .input-group input:focus,
 .input-group select:focus {
-    border-color: #6ecbf5;
+    border-color: #ff9ecb;
     outline: none;
+    box-shadow: 0 0 8px rgba(255, 155, 203, 0.3);
 }
 
 .photo-upload {
@@ -119,17 +141,20 @@ body {
 
 .upload-btn {
     padding: 12px 20px;
-    background: #6ecbf5;
+    background: linear-gradient(135deg, #ff9ecb 0%, #ffb9d6 100%);
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     cursor: pointer;
     font-size: 1rem;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 155, 203, 0.2);
 }
 
 .upload-btn:hover {
-    background: #0596e4;
+    background: linear-gradient(135deg, #ffb9d6 0%, #ff9ecb 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 155, 203, 0.3);
 }
 
 .photo-preview {
@@ -147,19 +172,21 @@ body {
 
 .generate-btn {
     padding: 15px 25px;
-    background: linear-gradient(135deg, #6ecbf5 0%, #0596e4 100%);
+    background: linear-gradient(135deg, #ff9ecb 0%, #ffb9d6 100%);
     color: white;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     cursor: pointer;
     font-size: 1.2rem;
     font-weight: 600;
-    transition: transform 0.3s;
+    transition: all 0.3s ease;
     margin-top: 20px;
+    box-shadow: 0 6px 20px rgba(255, 155, 203, 0.3);
 }
 
 .generate-btn:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 155, 203, 0.4);
 }
 
 .id-card-container {
@@ -168,18 +195,18 @@ body {
 }
 
 .id-card {
-    background: white;
+    background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
     border-radius: 20px;
     padding: 25px;
     width: 350px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    border: 1px solid #ddd;
+    box-shadow: 0 10px 30px rgba(255, 155, 203, 0.15);
+    border: 2px solid #ffb9d6;
 }
 
 .id-card-header {
     text-align: center;
     margin-bottom: 20px;
-    background: linear-gradient(135deg, #6ecbf5 0%, #0596e4 100%);
+    background: linear-gradient(135deg, #ff9ecb 0%, #ffb9d6 100%);
     color: white;
     padding: 15px;
     border-radius: 10px;
@@ -203,12 +230,12 @@ body {
 .photo-container {
     width: 100px;
     height: 100px;
-    border-radius: 10px;
+    border-radius: 12px;
     background: #f5f5f5;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid #ddd;
+    border: 2px solid #ffb9d6;
 }
 
 .pet-photo-placeholder {
@@ -245,7 +272,7 @@ body {
     width: 120px;
     height: 120px;
     background: #f5f5f5;
-    border: 2px solid #ddd;
+    border: 2px solid #ffb9d6;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -276,7 +303,7 @@ body {
 
 .download-btn {
     padding: 12px 20px;
-    background: #4caf50;
+    background: linear-gradient(135deg, #ff6eb4 0%, #ff9ecb 100%);
     color: white;
     border: none;
     border-radius: 8px;
@@ -286,12 +313,12 @@ body {
 }
 
 .download-btn:hover {
-    background: #45a049;
+    background: linear-gradient(135deg, #ff9ecb 0%, #ff6eb4 100%);
 }
 
 .share-btn {
     padding: 12px 20px;
-    background: #2196f3;
+    background: linear-gradient(135deg, #ffb9d6 0%, #ff9ecb 100%);
     color: white;
     border: none;
     border-radius: 8px;
@@ -301,14 +328,15 @@ body {
 }
 
 .share-btn:hover {
-    background: #0b7dda;
+    background: linear-gradient(135deg, #ff9ecb 0%, #ffb9d6 100%);
 }
 
 .share-text-section {
     margin-top: 20px;
     padding: 15px;
-    background: #f9f9f9;
+    background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
     border-radius: 10px;
+    border: 1px solid #ffb9d6;
 }
 
 .share-text-section h4 {
@@ -327,9 +355,10 @@ body {
 }
 
 .health-section {
-    background: #f9f9f9;
+    background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
     padding: 20px;
     border-radius: 10px;
+    border: 1px solid #ffb9d6;
 }
 
 .health-section h3 {
@@ -355,7 +384,7 @@ body {
     padding: 15px;
     background: white;
     border-radius: 8px;
-    border: 1px solid #ddd;
+    border: 1px solid #ffb9d6;
 }
 
 .vaccine-date {
@@ -364,7 +393,7 @@ body {
 
 .vaccine-status {
     padding: 8px 15px;
-    background: #4caf50;
+    background: linear-gradient(135deg, #ff6eb4 0%, #ff9ecb 100%);
     color: white;
     border: none;
     border-radius: 5px;
@@ -372,12 +401,12 @@ body {
 }
 
 .completed {
-    background: #4caf50;
+    background: linear-gradient(135deg, #ff9ecb 0%, #ff6eb4 100%);
 }
 
 .add-btn {
     padding: 12px 20px;
-    background: #2196f3;
+    background: linear-gradient(135deg, #ffb9d6 0%, #ff9ecb 100%);
     color: white;
     border: none;
     border-radius: 8px;
@@ -398,7 +427,7 @@ body {
     padding: 15px;
     background: white;
     border-radius: 8px;
-    border: 1px solid #ddd;
+    border: 1px solid #ffb9d6;
 }
 
 .alert-title {
@@ -417,7 +446,7 @@ body {
 
 .alert-action {
     padding: 8px 15px;
-    background: #ff9800;
+    background: linear-gradient(135deg, #ff9800 0%, #ff6eb4 100%);
     color: white;
     border: none;
     border-radius: 5px;
@@ -426,7 +455,7 @@ body {
 
 /* 商城样式 */
 .shop-section {
-    display: grid;
+2 display: grid;
     gap: 20px;
 }
 
@@ -434,9 +463,10 @@ body {
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 20px;
-    background: #f9f9f9;
+    background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
     padding: 20px;
     border-radius: 10px;
+    border: 1px solid #ffb9d6;
 }
 
 @media (max-width: 768px) {
@@ -460,7 +490,7 @@ body {
 .points-value {
     font-size: 2rem;
     font-weight: 700;
-    color: #4caf50;
+    color: #ff6eb4;
 }
 
 .points-rules {
@@ -485,7 +515,7 @@ body {
 
 .points-rules li::before {
     content: "•";
-    color: #2196f3;
+    color: #ffb9d6;
     position: absolute;
     left: 0;
 }
@@ -497,16 +527,17 @@ body {
 }
 
 .product-item {
-    background: white;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
     border-radius: 10px;
     padding: 20px;
     text-align: center;
-    border: 1px solid #ddd;
-    transition: transform 0.3s;
+    border: 2px solid #ffb9d6;
+    transition: all 0.3s ease;
 }
 
 .product-item:hover {
     transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(255, 155, 203, 0.2);
 }
 
 .product-img {
@@ -538,8 +569,8 @@ body {
 
 .buy-btn {
     padding: 10px 20px;
-    background: #4caf50;
-2 color: white;
+    background: linear-gradient(135deg, #ff6eb4 0%, #ff9ecb 100%);
+    color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -548,7 +579,7 @@ body {
 }
 
 .buy-btn:hover {
-    background: #45a049;
+    background: linear-gradient(135deg, #ff9ecb 0%, #ff6eb4 100%);
 }
 
 .footer {
@@ -556,6 +587,7 @@ body {
     margin-top: 40px;
     padding: 20px;
     color: #666;
-    background: #f9f9f9;
+    background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
     border-radius: 10px;
+    border: 1px solid #ffb9d6;
 }
