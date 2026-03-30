@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宠物店AI营销工具箱</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🐾 宠物店AI营销工具箱</h1>
+            <p class="subtitle">智能营销，让宠物店生意更旺</p>
+        </header>
+
+        <main class="main">
+            <!-- 宠物身份证生成器 -->
+            <section class="tool-card">
+                <div class="tool-header">
+                    <h2>📸 宠物身份证生成器</h2>
+                    <p class="tool-description">为宠物生成专属的趣味身份证，激发主人分享欲望</p>
+                </div>
+                
+                <div class="tool-content">
+                    <div class="input-section">
+                        <div class="input-group">
+                            <label for="pet-name">宠物名字</label>
+                            <input type="text" id="pet-name" placeholder="请输入宠物名字" value="旺财">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="pet-type">宠物品种</label>
+                            <select id="pet-type">
+                                <option value="狗">狗狗</option>
+                                <option value="猫">猫咪</option>
+                                <option value="兔">兔兔</option>
+                                <option value="鸟">鸟鸟</option>
+                                <option value="鱼">小鱼</option>
+                            </select>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="pet-age">宠物年龄</label>
+                            <input type="text" id="pet-age" placeholder="请输入宠物年龄" value="2岁">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="store-name">宠物店名称</label>
+                            <input type="text" id="store-name" placeholder="请输入宠物店名称" value="宠宠之家">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="promotion-code">优惠券代码</label>
+                            <input type="text" id="promotion-code" placeholder="请输入优惠券代码" value="PET2024">
+                        </div>
+                        
+                        <button id="generate-id-card" class="generate-btn">生成宠物身份证</button>
+                    </div>
+                    
+                    <div class="output-section">
+                        <div class="id-card-container">
+                            <!-- 身份证预览 -->
+                            <div id="id-card-preview" class="id-card">
+                                <div class="id-card-header">
+                                    <h3>🐾 宠物身份证</h3>
+                                </div>
+                                <div class="id-card-content">
+                                    <div class="pet-name-section">
+                                        <span class="label">宠物名：</span>
+                                        <span class="value id-pet-name">旺财</span>
+                                    </div>
+                                    <div class="pet-type-section">
+                                        <span class="label">品种：</span>
+                                        <span class="value id-pet-type">狗狗</span>
+                                    </div>
+                                    <div class="pet-age-section">
+                                        <span class="label">年龄：</span>
+                                        <span class="value id-pet-age">2岁</span>
+                                    </div>
+                                    <div class="title-section">
+                                        <span class="label">专属称号：</span>
+                                        <span class="value id-title">小区第一干饭王</span>
+                                    </div>
+                                    <div class="qr-section">
+                                        <div class="qr-code-placeholder">QR Code</div>
+                                        <p class="qr-text">扫码领取宠宠之家专属优惠</p>
+                                    </div>
+                                    <div class="store-name-section">
+                                        <span class="label">店铺：</span>
+                                        <span class="value id-store-name">宠宠之家</span>
+                                    </div>
+                                </div>
+                                <div class="id-card-footer">
+                                    <p>🪪 证件编号：PET2024-001</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="action-buttons">
+                            <button id="download-id-card" class="download-btn">下载身份证</button>
+                            <button id="share-suggestion" class="share-btn">分享文案建议</button>
+                        </div>
+                        
+                        <div id="share-text" class="share-text-section">
+                            <h4>朋友圈分享文案建议：</h4>
+                            <p>"今天带旺财办了个身份证！小区第一干饭王认证成功！扫码还有宠宠之家的优惠券领取～太有意思了！"</p>
+                        </div>
+                    </d

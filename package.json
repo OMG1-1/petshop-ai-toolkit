@@ -1,0 +1,12 @@
+{
+  "name": "pet-id-card-generator",
+  "version": "1.0.0",
+  "description": "宠物身份证生成器 - 宠物店AI营销工具箱",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve"
+  },
+  "keywords": ["pet", "id-card", "marketing", "tool"],
+  "author": "镇洋🌊",
+  "license": "MIT"
+}
