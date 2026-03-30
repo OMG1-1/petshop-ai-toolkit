@@ -31,31 +31,60 @@ const marketingTemplates = {
     }
 };
 
-// 海报配色方案
-const posterColors = {
-    'spring': '#a8d5ba',
-    'summer': '#4da3d3',
-    'autumn': '#ffb74d',
-    'winter': '#e0e0e0'
-};
+// 积分系统数据
+let userPoints = 150;
+const products = [
+    { name: '宠物玩偶', price: 89, points: 80 },
+    { name: '宠物聚会门票', price: 128, points: 100 },
+    { name: '宠物零食礼盒', price: 68, points: 50 },
+    { name: '宠物玩具套装', price: 58, points: 40 }
+];
 
 // 初始化函数
 document.addEventListener('DOMContentLoaded', function() {
-    // 设置默认日期
-    const now = new Date();
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    const dateString = `${now.getFullYear()}年${now.getMonth() + 1}月${now.getDate()}日`;
-    document.getElementById('activity-date').value = dateString;
-
     // 绑定事件
     document.getElementById('generate-id-card').addEventListener('click', generatePetIdCard);
     document.getElementById('download-id-card').addEventListener('click', downloadIdCard);
     document.getElementById('share-suggestion').addEventListener('click', generateShareText);
-    document.getElementById('generate-copy').addEventListener('click', generateMarketingCopy);
-    document.getElementById('generate-poster').addEventListener('click', generatePoster);
-    document.getElementById('download-poster').addEventListener('click', downloadPoster);
-    document.getElementById('generate-plan').addEventListener('click', generateActivityPlan);
+    document.getElementById('upload-photo').addEventListener('click', triggerPhotoUpload);
+    document.getElementById('pet-photo').addEventListener('change', handlePhotoUpload);
+    document.getElementById('save-health-record').addEventListener('click', saveHealthRecord);
+    document.getElementById('add-vaccine').addEventListener('click', addVaccineRecord);
+    
+    // 更新积分显示
+    updatePointsDisplay();
+    
+    // 更新商品信息
+    updateProductsInfo();
+    
+    // 实时更新预览
+    setupRealTimeUpdates();
 });
+
+// 触发照片上传
+function triggerPhotoUpload() {
+    document.getElementById('pet-photo').click();
+}
+
+// 处理照片上传
+function handlePhotoUpload(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const photoPreview = document.getElementById('photo-preview');
+            photoPreview.innerHTML = `<img src="${e.target.result}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">`;
+            
+            // 更新身份证中的照片
+            const idCardPhoto = document.querySelector('.pet-photo-placeholder');
+            idCardPhoto.innerHTML = `<img src="${e.target.result}" style="width: 100px; height: 100px; border-radius: 10px; object-fit: cover;">`;
+            
+            // 增加积分
+            addPoints(10);
+        };
+        reader.readAsDataURL(file);
+    }
+}
 
 // 生成宠物身份证
 function generatePetIdCard() {
@@ -67,7 +96,7 @@ function generatePetIdCard() {
 
     // 更新身份证内容
     document.getElementById('id-pet-name').textContent = petName || '旺财';
-    document.getElementById('id-pet-type').textContent = petType || '狗狗';
+    document.getElementById('id-pet-type').textCompletion = petType || '狗狗';
     document.getElementById('id-pet-age').textContent = petAge || '2岁';
     document.getElementById('id-store-name').textContent = storeName || '宠宠之家';
 
@@ -82,7 +111,10 @@ function generatePetIdCard() {
     // 更新二维码文本
     document.querySelector('.qr-text').textContent = `扫码领取${storeName || '宠宠之家'}专属优惠`;
 
-    alert('宠物身份证已生成！');
+    // 增加积分
+    addPoints(10);
+    
+    alert('宠物身份证已生成！获得10积分！');
 }
 
 // 下载身份证
@@ -93,6 +125,9 @@ function downloadIdCard() {
         link.download = '宠物身份证.png';
         link.href = canvas.toDataURL();
         link.click();
+        
+        // 增加积分
+        addPoints(20);
     });
 }
 
@@ -106,134 +141,124 @@ function generateShareText() {
     
     const shareTextSection = document.getElementById('share-text');
     shareTextSection.querySelector('p').textContent = shareText;
-    alert('分享文案已生成！');
-}
-
-// 生成营销文案
-function generateMarketingCopy() {
-    const platform = document.getElementById('platform').value;
-    const campaignType = document.getElementById('campaign-type').value;
-    const targetPet = document.getElementById('target-pet').value || '狗狗';
-
-    // 生成随机价格
-    const price = Math.floor(Math.random() * 100) + 50;
-    const originalPrice = Math.floor(price * 1.5);
-
-    // 获取模板
-    const template = marketingTemplates[platform][campaignType];
-    const randomTemplate = template[Math.floor(Math.random() * template.length)];
     
-    // 替换模板中的变量
-    const finalCopy = randomTemplate
-        .replace('[价格]', price.toString())
-        .replace('[原价]', originalPrice.toString())
-        .replace('[宠物类型]', targetPet);
+    // 增加积分
+    addPoints(20);
+    alert('分享文案已生成！获得20积分！');
+}
 
-    // 更新显示
-    const copyOutput = document.getElementById('copy-output');
-    if (platform === '朋友圈') {
-        copyOutput.querySelector('h4:nth-of-type(1)').textContent = '📋 朋友圈文案：';
-        copyOutput.querySelector('p:nth-of-type(1)').textContent = finalCopy;
-    } else {
-        copyOutput.querySelector('h4:nth-of-type(2)').textContent = '📋 ' + platform + '文案：';
-        copyOutput.querySelector('p:nth-of-type(2)').textContent = finalCopy;
+// 保存健康档案
+function saveHealthRecord() {
+    const weight = document.getElementById('pet-weight').value;
+    const lastVaccine = document.getElementById('last-vaccine').value;
+    const nextCheckup = document.getElementById('next-checkup').value;
+    
+    if (!weight || !lastVaccine || !nextCheckup) {
+        alert('请填写完整的健康信息！');
+        return;
     }
-
-    alert('营销文案已生成！');
+    
+    // 计算天数提醒
+    const checkupDate = new Date(nextCheckup);
+    const today = new Date();
+    const diffDays = Math.floor((checkupDate - today) / (1000 * 60 * 60 * 24));
+    
+    document.querySelector('.days-remaining').textContent = `${diffDays}天`;
+    
+    // 增加积分
+    addPoints(5);
+    alert('健康档案已保存！获得5积分！');
 }
 
-// 生成裂变海报
-function generatePoster() {
-    const posterTitle = document.getElementById('poster-title').value || '宠物春季洗澡季';
-    const posterDiscount = document.getElementById('poster-discount').value || '88元洗澡套餐';
-    const posterColor = document.getElementById('poster-color').value;
-
-    // 更新海报内容
-    const posterPreview = document.getElementById('poster-preview');
-    const posterHeader = posterPreview.querySelector('.poster-header h3');
-    const discountBox = posterPreview.querySelector('.price');
-    const actionBox = posterPreview.querySelector('.action-box p');
-
-    posterHeader.textContent = posterTitle;
-    discountBox.textContent = posterDiscount;
-    actionBox.textContent = `转发海报即可获得\n<strong>宠物身份证免费生成服务</strong>`;
-
-    // 更新颜色
-    const poster = posterPreview.querySelector('.poster');
-    poster.style.backgroundColor = posterColors[posterColor] + '80'; // 80表示透明度
-
-    alert('裂变海报已生成！');
+// 添加疫苗记录
+function addVaccineRecord() {
+    const vaccineName = prompt('请输入疫苗名称：');
+    const vaccineDate = prompt('请输入疫苗日期（YYYY-MM-DD）：');
+    
+    if (vaccineName && vaccineDate) {
+        const vaccineList = document.querySelector('.vaccine-list');
+        const newVaccine = document.createElement('div');
+        newVaccine.className = 'vaccine-item';
+        newVaccine.innerHTML = `
+            <span>${vaccineName}</span>
+            <span class="vaccine-date">${vaccineDate}</span>
+            <button class="vaccine-status completed">已完成</button>
+        `;
+        
+        vaccineList.appendChild(newVaccine);
+        alert('疫苗记录已添加！');
+    }
 }
 
-// 下载海报
-function downloadPoster() {
-    const posterElement = document.querySelector('.poster');
-    html2canvas(posterElement).then(function(canvas) {
-        const link = document.createElement('a');
-        link.download = '裂变海报.png';
-        link.href = canvas.toDataURL();
-        link.click();
+// 更新积分显示
+function updatePointsDisplay() {
+    document.querySelector('.points-value').textContent = `${userPoints}分`;
+}
+
+// 添加积分
+function addPoints(points) {
+    userPoints += points;
+    updatePointsDisplay();
+}
+
+// 更新商品信息
+function updateProductsInfo() {
+    const productItems = document.querySelectorAll('.product-item');
+    productItems.forEach((item, index) => {
+        const product = products[index];
+        item.querySelector('.product-name').textContent = product.name;
+        item.querySelector('.product-price').textContent = `¥${product.price}`;
+        item.querySelector('.product-points span').textContent = `${product.points}分`;
     });
 }
 
-// 生成活动策划
-function generateActivityPlan() {
-    const activityType = document.getElementById('activity-type').value;
-    const activityDate = document.getElementById('activity-date').value;
-
-    // 活动方案内容
-    const planContent = `
-        <h4>📋 ${activityType}方案：</h4>
-        <ul>
-            <li><strong>活动主题</strong>：宠宠之家${activityType}</li>
-            <li><strong>时间</strong>：${activityDate || '2024年4月20日'} 下午2点-5点</li>
-            <li><strong>活动亮点</strong>：
-                - ${activityType.includes('生日') ? '宠物生日蛋糕制作' : '专业洗护体验'}
-                - 宠物摄影留念
-                - ${activityType.includes('生日') ? '生日礼品包赠送' : '体验课程礼包'}
-                - 专属宠物身份证
-            </li>
-            <li><strong>参与方式</strong>：
-                - 转发海报即可报名
-                - 朋友圈集赞20个获得VIP席位
-            </li>
-            <li><strong>预算</strong>：
-                ${activityType.includes('生日') ? '蛋糕成本50元/份，摄影师合作，礼品包30元/份' : '洗护材料成本30元/次，摄影师合作，礼品包20元/份'}
-            </li>
-            <li><strong>预期收益</strong>：
-                - 增加店铺曝光度
-                - 吸引新客户30-50人
-                - 建立客户社群
-                - ${activityType.includes('生日') ? '宠物生日派对系列服务预订' : '洗护课程预订'}
-            </li>
-        </ul>
-    `;
-
-    // 更新显示
-    const planOutput = document.getElementById('plan-output');
-    planOutput.innerHTML = planContent;
-
-    alert('活动策划方案已生成！');
-}
+// 商品购买功能
+document.querySelectorAll('.buy-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const productIndex = this.parentElement.querySelector('.product-points span').textContent.replace('分', '');
+        const pointsNeeded = parseInt(productIndex);
+        
+        if (userPoints >= pointsNeeded) {
+            userPoints -= pointsNeeded;
+            updatePointsDisplay();
+            alert(`购买成功！已扣除${pointsNeeded}积分`);
+        } else {
+            alert(`积分不足！需要${pointsNeeded}积分，当前只有${userPoints}积分`);
+        }
+    });
+});
 
 // 实时更新预览
-document.getElementById('pet-name').addEventListener('input', function() {
-    document.getElementById('id-pet-name').textContent = this.value || '旺财';
-});
-
-document.getElementById('pet-type').addEventListener('change', function() {
-    document.getElementById('id-pet-type').textContent = this.value;
-});
-
-document.getElementById('pet-age').addEventListener('input', function() {
-    document.getElementById('id-pet-age').textContent = this.value || '2岁';
-});
-
-document.getElementById('store-name').addEventListener('input', function() {
-    document.getElementById('id-store-name').textContent = this.value || '宠宠之家';
-    document.querySelector('.qr-text').textContent = `扫码领取${this.value || '宠宠之家'}专属优惠`;
-});
-
-document.getElementById('promotion-code').addEventListener('input', function() {
-    document.querySelector('.id-card-footer p').textContent = `🪪 证件编号：${this.value || 'PET2024'}-001`;
-});
+function setupRealTimeUpdates() {
+    document.getElementById('pet-name').addEventListener('input', function() {
+        document.getElementById('id-pet-name').textContent = this.value || '旺财';
+    });
+    
+    document.getElementById('pet-type').addEventListener('change', function() {
+        document.getElementById('id-pet-type').textContent = this.value;
+    });
+    
+    document.getElementById('pet-age').addEventListener('input', function() {
+        document.getElementById('id-pet-age').textContent = this.value || '2岁';
+    });
+    
+    document.getElementById('store-name').addEventListener('input', function() {
+        document.getElementById('id-store-name').textContent = this.value || '宠宠之家';
+        document.querySelector('.qr-text').textContent = `扫码领取${this.value || '宠宠之家'}专属优惠`;
+    });
+    
+    document.getElementById('promotion-code').addEventListener('input', function() {
+        document.querySelector('.id-card-footer p').textContent = `🪪 证件编号：${this.value || 'PET2024'}-001`;
+    });
+    
+    // 健康档案日期计算
+    document.getElementById('next-checkup').addEventListener('change', function() {
+        const checkupDate = new Date(this.value);
+        const today = new Date();
+        const diffDays = Math.floor((checkupDate - today) / (1000 * 60 * 60 * 24));
+        
+        if (diffDays > 0) {
+            document.querySelector('.days-remaining').textContent = `${diffDays}天`;
+        }
+    });
+}

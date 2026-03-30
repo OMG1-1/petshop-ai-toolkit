@@ -56,6 +56,15 @@
                             <input type="text" id="promotion-code" placeholder="请输入优惠券代码" value="PET2024">
                         </div>
                         
+                        <div class="input-group">
+                            <label for="pet-photo">宠物照片</label>
+                            <div class="photo-upload">
+                                <input type="file" id="pet-photo" accept="image/*" style="display: none;">
+                                <button id="upload-photo" class="upload-btn">上传宠物照片</button>
+                                <div class="photo-preview" id="photo-preview"></div>
+                            </div>
+                        </div>
+                        
                         <button id="generate-id-card" class="generate-btn">生成宠物身份证</button>
                     </div>
                     
@@ -67,6 +76,11 @@
                                     <h3>🐾 宠物身份证</h3>
                                 </div>
                                 <div class="id-card-content">
+                                    <div class="pet-photo-section">
+                                        <div class="photo-container">
+                                            <div class="pet-photo-placeholder">🐶 宠物照片</div>
+                                        </div>
+                                    </div>
                                     <div class="pet-name-section">
                                         <span class="label">宠物名：</span>
                                         <span class="value id-pet-name">旺财</span>
@@ -107,4 +121,147 @@
                             <h4>朋友圈分享文案建议：</h4>
                             <p>"今天带旺财办了个身份证！小区第一干饭王认证成功！扫码还有宠宠之家的优惠券领取～太有意思了！"</p>
                         </div>
-                    </d
+                    </div>
+                </div>
+            </section>
+
+            <!-- 宠物健康档案 -->
+            <section class="tool-card">
+                <div class="tool-header">
+                    <h2>🏥 宠物健康档案</h2>
+                    <p class="tool-description">记录宠物的健康状况，疫苗、体检提醒，宠物全面管理</p>
+                </div>
+                
+                <div class="tool-content">
+                    <div class="health-record">
+                        <!-- 基础信息 -->
+                        <div class="health-section">
+                            <h3>基本信息</h3>
+                            <div class="health-inputs">
+                                <div class="input-group">
+                                    <label for="pet-weight">体重（kg）</label>
+                                    <input type="number" id="pet-weight" placeholder="请输入体重" value="10">
+                                </div>
+                                <div class="input-group">
+                                    <label for="last-vaccine">上次疫苗</label>
+                                    <input type="date" id="last-vaccine" value="2024-03-01">
+                                </div>
+                                <div class="input-group">
+                                    <label for="next-checkup">下次体检</label>
+                                    <input type="date" id="next-checkup" value="2024-06-01">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 疫苗记录 -->
+                        <div class="health-section">
+                            <h3>疫苗记录</h3>
+                            <div class="vaccine-list">
+                                <div class="vaccine-item">
+                                    <span>狂犬疫苗</span>
+                                    <span class="vaccine-date">2024-03-01</span>
+                                    <button class="vaccine-status completed">已完成</button>
+                                </div>
+                                <div class="vaccine-item">
+                                    <span>犬瘟热疫苗</span>
+                                    <span class="vaccine-date">2024-02-15</span>
+                                    <button class="vaccine-status completed">已完成</button>
+                                </div>
+                                <button id="add-vaccine" class="add-btn">添加疫苗记录</button>
+                            </div>
+                        </div>
+
+                        <!-- 体检提醒 -->
+                        <div class="health-section">
+                            <h3>体检提醒</h3>
+                            <div class="checkup-alerts">
+                                <div class="alert-item">
+                                    <span class=alert-title">季度体检</span>
+                                    <span class="alert-days">距离下次体检：<span class="days-remaining">62天</span></span>
+                                    <button class="alert-action">设置提醒</button>
+                                </div>
+                                <div class="alert-item">
+                                    <span class="alert-title">年度疫苗</span>
+                                    <span class="alert-days">距离下次疫苗：<span class="days-remaining">45天</span></span>
+                                    <button class="alert-action">设置提醒</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button id="save-health-record" class="generate-btn">保存健康档案</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 宠物商城 -->
+            <section class="tool-card">
+                <div class="tool-header">
+                    <h2>🛒 宠物商城</h2>
+                    <p class="tool-description">精选宠物周边商品，积分兑换，会员专享</p>
+                </div>
+                
+                <div class="tool-content">
+                    <div class="shop-section">
+                        <h3>积分系统</h3>
+                        <div class="points-info">
+                            <div class="points-display">
+                                <span class="points-label">当前积分：</span>
+                                <span class="points-value">150分</span>
+                            </div>
+                            <div class="points-rules">
+                                <p>📝 积分规则：</p>
+                                <ul>
+                                    <li>生成身份证：10分</li>
+                                    <li>分享朋友圈：20分</li>
+                                    <li>商城消费：每10元=1分</li>
+                                    <li>邀请好友：50分</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <h3>精选商品</h3>
+                        <div class="product-grid">
+                            <div class="product-item">
+                                <div class="product-img">🐶</div>
+                                <div class="product-name">宠物玩偶</div>
+                                <div class="product-price">¥89</div>
+                                <div class="product-points">可用积分：<span>80分</span></div>
+                                <button class="buy-btn">购买</button>
+                            </div>
+                            <div class="product-item">
+                                <div class="product-img">🎪</div>
+                                <div class="product-name">宠物聚会门票</div>
+                                <div class="product-price">¥128</div>
+                                <div class="product-points">可用积分：<span>100分</span></div>
+                                <button class="buy-btn">购买</button>
+                            </div>
+                            <div class="product-item">
+                                <div class="product-img">🍖</div>
+                                <div class="product-name">宠物零食礼盒</div>
+                                <div class="product-price">¥68</div>
+                                <div class="product-points">可用积分：<span>50分</span></div>
+                                <button class="buy-btn">购买</button>
+                            </div>
+                            <div class="product-item">
+                                <div class="product-img">🎾</div>
+                                <div class="product-name">宠物玩具套装</div>
+                                <div class="product-price">¥58</div>
+                                <div class="product-points">可用积分：<span>40分</span></div>
+                                <button class="buy-btn">购买</button>
+                            </div>
+                        </div>
+                        
+                        <button id="view-more-products" class="generate-btn">查看更多商品</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>宠宠之家宠物健康管理平台 | © 2024 宠物店AI营销工具箱</p>
+        </footer>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
